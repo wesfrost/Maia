@@ -33,5 +33,7 @@ Starter scaffold for Wes's orchestration workspace: personas, agents, web, and i
 - Principle of least privilege for cloud roles.
 - Pre-commit hooks recommended (add later in `scripts/`).
 
+##Setup Visual Studio
+
 ---
 Author: Maia
