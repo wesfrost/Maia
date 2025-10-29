@@ -1,0 +1,15 @@
+name: ci
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  meta:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print tree
+        run: |
+          echo "CI placeholder. Add real jobs for Node/Python/.NET when ready."
+          ls -la

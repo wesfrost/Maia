@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "ms-vscode-remote.remote-containers",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-python.python",
+    "ms-dotnettools.csharp",
+    "ms-azuretools.vscode-docker",
+    "github.vscode-github-actions"
+  ]
+}
