@@ -1,0 +1,9 @@
+﻿{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "web:dev",   "type": "shell", "command": "npm --prefix apps/web run dev" },
+    { "label": "web:test",  "type": "shell", "command": "npm --prefix apps/web test" },
+    { "label": "worker:run","type": "shell", "command": "dotnet run --project services/worker" },
+    { "label": "worker:test","type": "shell","command": "dotnet test" }
+  ]
+}
