@@ -1,0 +1,9 @@
+﻿{
+  "profiles": {
+    "Web Dev (npm)": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\nodejs\\npm.cmd",
+      "commandLineArgs": "--prefix ..\\..\\apps\\web run dev"
+    }
+  }
+}
