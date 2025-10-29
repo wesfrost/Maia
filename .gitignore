@@ -42,3 +42,9 @@ coverage/
 .cache/
 .idea/
 *.swp
+
+# Visual Studio
+.vs/
+# Optional: ignore local zip artifacts
+*.zip
+
