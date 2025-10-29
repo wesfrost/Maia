@@ -1,0 +1,20 @@
+﻿{
+  "version": "0.2.1",
+  "defaults": { "console": "externalConsole" },
+  "configurations": [
+    {
+      "name": "apps/web: npm run dev",
+      "type": "default",
+      "executable": "C:\\Windows\\System32\\cmd.exe",
+      "args": "/c npm --prefix apps/web run dev",
+      "workingDirectory": "${workspaceRoot}"
+    },
+    {
+      "name": "dotnet: build + test (CLI)",
+      "type": "default",
+      "executable": "C:\\Windows\\System32\\cmd.exe",
+      "args": "/c dotnet --info && dotnet restore && dotnet build --configuration Release && dotnet test",
+      "workingDirectory": "${workspaceRoot}"
+    }
+  ]
+}
