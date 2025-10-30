@@ -1,0 +1,92 @@
+﻿using Maia.Contracts;
+using System.Collections.Concurrent;
+// Alias to avoid conflict with Microsoft.AspNetCore.Routing.IRouter
+using IModelRouter = Maia.RouterRules.IRouter;
+using Maia.RouterRules;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSingleton<IModelRouter, SimpleRouter>();
+builder.Services.AddSingleton<IEventStore, InMemoryEventStore>();
+
+var app = builder.Build();
+
+app.MapGet("/health", () => Results.Ok(new { ok = true, ts = DateTime.UtcNow }));
+
+app.MapPost("/runs", async (RunRequest req, IModelRouter
+ router, IEventStore store) =>
+{
+    var runId = Guid.NewGuid().ToString("n");
+    await store.Append(runId, new RunEvent("run_started", DateTime.UtcNow, req));
+
+    var route = router.ChooseModel(req);
+    await store.Append(runId, new RunEvent("route_chosen", DateTime.UtcNow, route));
+
+    // TODO: enqueue work; simulate a simple result for now
+    var result = new { text = $"Maia echo: {req.Goal}", cost = 0.001 };
+    await store.Append(runId, new RunEvent("completed", DateTime.UtcNow, result));
+
+    return Results.Ok(new { runId });
+});
+
+app.MapGet("/runs/{id}/events", (string id, IEventStore store)
+    => Results.Ok(store.Read(id)));
+
+app.Run();
+
+public interface IEventStore
+{
+    Task Append(string id, RunEvent e);
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   IEnumerable<RunEvent> Read(string id);
+}
+
+public sealed class InMemoryEventStore : IEventStore
+{
+    private readonly ConcurrentDictionary<string, List<RunEvent>> _db = new();
+
+    public Task Append(string id, RunEvent e)
+    {
+        var list = _db.GetOrAdd(id, _ => new List<RunEvent>());
+        lock (list) list.Add(e);
+        return Task.CompletedTask;
+    }
+
+    public IEnumerable<RunEvent> Read(string id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        => _db.TryGetValue(id, out var list) ? list : Array.Empty<RunEvent>();
+}

@@ -1,4 +1,4 @@
-﻿using Maia.Contracts;
+using Maia.Contracts;
 
 namespace Maia.RouterRules;
 public interface IRouter { RouteDecision ChooseModel(RunRequest req); }
