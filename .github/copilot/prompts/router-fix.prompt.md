@@ -1,11 +1,11 @@
 ﻿# Fix Router Build (Prompt)
 
-**Goal**: Ensure `Maia.RouterRules` compiles and passes tests.
+**Goal**: Ensure `Maia.RouterRules` compiles and tests pass.
 **Context**:
-- Use raw string literals for multi-line prompts.
-- No naked `@` strings; close quotes; add a trailing semicolon.
+- Use C# raw string literals for multi-line prompts (avoid newline-in-constant).
+- Close quotes and end statements with `;`. Avoid naked `@`.
 **Tasks**:
-1. Inspect `packages/router-rules/Router.cs` for unterminated strings or bad verbatim literals.
-2. Replace with `"""` raw string literals where needed.
-3. Add/extend unit tests for routing heuristics.
-4. Suggest security notes (no secrets in prompts, no user-controlled injection points).
+1. Inspect `packages/router-rules/Router.cs` for unterminated or invalid strings.
+2. Convert to `"""` raw strings (or `$"""` for interpolation).
+3. Add/extend unit tests for routing heuristics; include edge cases.
+4. Add a brief *Security Notes* section to the PR (no secrets in prompts, input validation).

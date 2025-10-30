@@ -31,6 +31,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{07C2787E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunWeb", "tools\RunWeb\RunWeb.csproj", "{4D7BD661-92A7-4101-984F-094DBE0884FF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		fresh_setup.ps1 = fresh_setup.ps1
+		fresh_setup_v2.ps1 = fresh_setup_v2.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,5 +135,8 @@ Global
 		{D504998C-DEDD-6620-4D61-5EAA0BAE1179} = {5854FF58-B8C5-05C6-5BF2-ACE42193F22B}
 		{DC7C2E94-013A-4930-AE93-2065E327B223} = {D504998C-DEDD-6620-4D61-5EAA0BAE1179}
 		{4D7BD661-92A7-4101-984F-094DBE0884FF} = {07C2787E-EAC7-C090-1BA3-A61EC2A24D84}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0AFBDC7C-2D37-40ED-93B4-1D269CF65002}
 	EndGlobalSection
 EndGlobal

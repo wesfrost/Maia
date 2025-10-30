@@ -1,89 +1,41 @@
-﻿# Maia – Repository Custom Instructions for GitHub Copilot
+﻿# Maia  Repository Custom Instructions for GitHub Copilot
 
 ## Purpose
-You are assisting on the **Maia AI** platform (Orchestrated Automation Workspace). Priorities:
-1) **High-accuracy reasoning & decision-making**
-2) **Secure, production-grade code** (security-by-default)
-3) **Maintainable .NET 9 / C# 13** patterns with minimal dependencies
-4) **Clear diffs, small PRs, strong tests**
+You are assisting on the **Maia AI** platform (Orchestrated Automation Workspace) for Roam Ebooks.
+Priorities:
+1. **High-accuracy reasoning & decision-making** (route tasks to the right model/mini-bot)
+2. **Security-by-default** (no secrets in code, least privilege, validated inputs)
+3. **Maintainable .NET 9 / C# raw-string idioms** and small, reviewable diffs
+4. **Strong tests** and clear docs
 
-## Global Rules (Security-by-default)
-- **Never include secrets** (keys, tokens) in code or prompts. Use configuration + secret stores.
-- Prefer **backend proxies** for external APIs; never call third-party APIs directly from UI.
-- **Validate inputs**, enforce least-privilege, and add parameter bounds and types.
-- Do quick **threat modeling** for new features; call out risky areas, dependencies, and licenses.
-- Log safely (no PII/secrets). Add structured logs and minimal telemetry hooks.
+## Architecture & Boundaries
+- Keep the **core AI (Maia)** isolated from **mini-bots** and **tooling**.
+- Main packages:
+  - `Maia.Contracts`  DTOs/interfaces only. No side effects.
+  - `Maia.RouterRules`  routing prompts/logic; references Contracts.
+  - `Maia.Memory`  persistence/services; references Contracts.
+  - `Maia.Orchestrator`  composition root; references Contracts, RouterRules, Memory.
+- Router returns a route id: **fast | balanced | deep** based on task complexity & correctness needs.
 
-## Routing & Personas
-- Maia separates the **core AI** from **mini-bots**. Keep persona code isolated from the core.
-- Router rules pick {fast | balanced | deep} based on task complexity and correctness needs.
-- Maintain clean boundaries: **AIMaster / Toolset / Agents**. Do not entangle concerns.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Security-by-Default (non-negotiable)
+- **Never include secrets** (API keys, tokens) in code, tests, or prompts. Use config + secret stores.
+- Prefer **backend proxies** for external APIs; do not call third-party APIs directly from UI.
+- **Validate** types, ranges, and bounds; reject on violation; log safely (no PII/secrets).
+- **Least privilege** for services/roles; document any new permission.
+- Add a short **Security Notes** section in PRs for new external calls or elevated privileges.
+- Perform a quick **threat model** for new features (inputs, authn/z, data flow, dependencies/licenses).
 
 ## Coding Standards
-- **C# / .NET 9**; prefer raw string literals for multi-line text; avoid brittle string concatenation.
-- Keep functions small; return early; deterministic behavior, async appropriately.
-- Error handling: fail fast, bubble meaningful exceptions; never swallow.
-- Tests: add/extend unit tests for new logic; include sample inputs/edge cases.
-- Infra: IaC-friendly assumptions; avoid hard-coded paths; config via `appsettings.*.json`.
+- C#/.NET 9; prefer **raw string literals** (`"""`) for multi-line text; `$"""` for interpolation; escape braces as `{{` `}}`.
+- Small pure helpers; early guard clauses; avoid magic numbers; constants > literals.
+- `private readonly` fields; consider `sealed` for concrete types.
+- Exceptions: fail fast with meaningful messages; never swallow silently.
+- Logging: structured and minimal; useful for ops; safe for privacy.
 
-## Project Topology (typical)
-- `Maia.Contracts` → shared DTOs/interfaces. **No** external side effects.
-- `Maia.RouterRules` → routing rules & prompts; references `Contracts`.
--
-
-
-
-
-
-
-
-
-
-
- `Maia.Memory` → persistence/services; references `Contracts`.
-- `Maia.Orchestrator` → composition root; references `Contracts`, `RouterRules`, `Memory`.
-
-## PR / Diff Requirements
-- Keep PRs focused; include migration notes if schema/config changes.
-- Include a short **Security Notes** section for any new external call, secret, or permission.
-- Add **Readme notes** or inline comments when patterns may surprise future maintainers.
-
-#
-
-
-
-
-
-
-
-# Style Nits Copilot Should Prefer
-- `private readonly` fields; `sealed` where practical.
-- Use `"""` raw strings; for interpolation, `$""" ... """` and escape braces with `{{ }}`.
-- Guard clauses first; compose with pure helpers; no magic numbers; constants over literals.
+## Testing & PRs
+- Add/extend **unit tests** for new logic, including edge cases.
+- Keep diffs small/focused; include migration notes if schema/config changes.
+- Update README or inline docs when patterns may surprise future maintainers.
 
 ## When Unsure
-- Ask f
-
-
-
-
-
-or missing acceptance criteria; propose tests; suggest a minimal safe default.
-
+- Ask for missing acceptance criteria, propose tests, and suggest a minimal, safe default.
