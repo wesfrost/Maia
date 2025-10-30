@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36623.8 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maia.RouterRules", "Maia.RouterRules.csproj", "{CE153572-C3FB-9F98-1A85-C1219BAAD74B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE153572-C3FB-9F98-1A85-C1219BAAD74B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE153572-C3FB-9F98-1A85-C1219BAAD74B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE153572-C3FB-9F98-1A85-C1219BAAD74B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE153572-C3FB-9F98-1A85-C1219BAAD74B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E60972AE-DAE9-4718-B547-D3E17B731439}
+	EndGlobalSection
+EndGlobal
