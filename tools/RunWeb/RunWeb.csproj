@@ -1,10 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
+        <!-- Make F5 run npm from the solution root -->
+        <StartAction>Program</StartAction>
+        <StartProgram>$(ComSpec)</StartProgram>
+        <StartArguments>/k "cd /d $(SolutionDir) &amp;&amp; npm --prefix apps\web run dev"</StartArguments>
+        <StartWorkingDirectory>$(SolutionDir)</StartWorkingDirectory>
+    </PropertyGroup>
 </Project>
